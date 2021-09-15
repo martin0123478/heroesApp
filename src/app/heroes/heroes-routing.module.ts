@@ -17,7 +17,7 @@ const routes: Routes = [
     },
     {
       path:'agregar',
-      component:ListadoComponent
+      component:AgregarComponent
     },
     {
       path: 'editar/:id',
