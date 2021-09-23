@@ -16,4 +16,8 @@ private baseUrl = environment.baseUrl
   getHeroe(id:string){
     return this.http.get<Heroe>(`${this.baseUrl}/heroes/${id}`)
   }
+
+  getSugerencias(termino:string){
+    return this.http.get<Heroe[]>(`${this.baseUrl}/heroes?q=${termino}&_limit=6`);
+  }
 }
