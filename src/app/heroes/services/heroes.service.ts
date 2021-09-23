@@ -12,4 +12,7 @@ export class HeroesService {
   getHeroes(){
    return this.http.get<Heroe[]>('http://localhost:3000/heroes');
   }
+  getHeroe(id:string){
+    return this.http.get<Heroe>(`http://localhost:3000/heroes/${id}`)
+  }
 }
