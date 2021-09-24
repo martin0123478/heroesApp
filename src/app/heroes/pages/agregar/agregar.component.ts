@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Heroe, Publisher } from '../../interfaces/heroes.interface';
+import { HeroesService } from '../../services/heroes.service';
 
 
 @Component({
@@ -28,10 +29,14 @@ heroe:Heroe={
   alt_img:''
 
 }
-  constructor() { }
+  constructor(private service:HeroesService) { }
 
   ngOnInit(): void {
     
+  }
+  guardar(){
+    this.service.addHero(this.heroe)
+    .subscribe(resp=>console.log(resp))
   }
 
 }
