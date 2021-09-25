@@ -7,7 +7,10 @@ import {switchMap} from 'rxjs/operators'
 @Component({
   selector: 'app-agregar',
   templateUrl: './agregar.component.html',
-  styles: [
+  styles: [`
+  
+    
+  `
   ]
 })
 export class AgregarComponent implements OnInit {
@@ -55,6 +58,12 @@ heroe:Heroe={
     })
     }
     
+  }
+  borrarHeroe(){
+    this.service.borrarHero(this.heroe.id!)
+    .subscribe(resp=>{
+      this.router.navigate(['/heroes/listado'])
+    })
   }
 
 }

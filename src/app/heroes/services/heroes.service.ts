@@ -17,7 +17,7 @@ private baseUrl = environment.baseUrl
     return this.http.get<Heroe>(`${this.baseUrl}/heroes/${id}`)
   }
 
-  getSugerencias(termino:Heroe){
+  getSugerencias(termino:string){
     return this.http.get<Heroe[]>(`${this.baseUrl}/heroes?q=${termino}&_limit=6`);
   }
 
@@ -27,4 +27,8 @@ private baseUrl = environment.baseUrl
   editHero(heroe:Heroe){
     return this.http.put<Heroe>(`${this.baseUrl}/heroes/${heroe.id}`,heroe)
   }
+  borrarHero(id:string){
+    return this.http.delete<any>(`${this.baseUrl}/heroes/${id}`)
+  }
+  
 }

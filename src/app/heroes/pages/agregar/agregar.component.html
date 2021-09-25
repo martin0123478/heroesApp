@@ -46,11 +46,19 @@
     </mat-form-field>
 
     <br>
-    <button mat-raised-button color="primary" (click)="guardar()">
-      <mat-icon>save</mat-icon>
-      </button>
     
+    
+      <div>
+        <button mat-raised-button color="primary" (click)="guardar()">
+          <mat-icon>save</mat-icon>
+          </button>
+        <button *ngIf="heroe.id"
+        mat-raised-button color="warn"
+        (click)="borrarHeroe()">Borar
 
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
   </div>
   <div fxFlex="50">
     <img [src]="heroe | imagen" alt="foto">
