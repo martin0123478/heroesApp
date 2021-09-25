@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute,Router } from '@angular/router';
 import { Heroe, Publisher } from '../../interfaces/heroes.interface';
 import { HeroesService } from '../../services/heroes.service';
-
+import {switchMap} from 'rxjs/operators'
 
 @Component({
   selector: 'app-agregar',
@@ -29,14 +30,31 @@ heroe:Heroe={
   alt_img:''
 
 }
-  constructor(private service:HeroesService) { }
+  constructor(private service:HeroesService,
+    private activatedRute:ActivatedRoute,
+    private router:Router) { }
 
   ngOnInit(): void {
+    this.activatedRute.params
+    .pipe(
+      switchMap(({id})=>this.service.getHeroe(id))
+    )
+    .subscribe(hero=>this.heroe=hero)
     
   }
   guardar(){
-    this.service.addHero(this.heroe)
-    .subscribe(resp=>console.log(resp))
+    if(this.heroe.id){
+      //actualizar
+      this.service.editHero(this.heroe)
+      .subscribe(hero=>{console.log('actualizado',hero)})
+    }
+    else{
+      this.service.addHero(this.heroe)
+    .subscribe(heroe=>{
+      this.router.navigate(['/heroes',heroe.id])
+    })
+    }
+    
   }
 
 }

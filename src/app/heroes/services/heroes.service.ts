@@ -24,4 +24,7 @@ private baseUrl = environment.baseUrl
   addHero(heroe:Heroe){
     return this.http.post<Heroe>(`${this.baseUrl}/heroes`,heroe)
   }
+  editHero(heroe:Heroe){
+    return this.http.put<Heroe>(`${this.baseUrl}/heroes/${heroe.id}`,heroe)
+  }
 }
